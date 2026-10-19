@@ -13,11 +13,11 @@ const EMPLOYEES = [
 
 // كل دور: صورته، إطار العرض، مقياس الرسم، ونقطة البداية
 const FLOORS = {
-  G:{name:"الأرضي", img:"assets/floors/ground.jpg", vb:[0,0,1600,1460], s:2, start:[1490,500], from:"مدخل الموظفين"},
-  M:{name:"الميزانين", img:"assets/floors/mezzanine.jpg", vb:[400,0,920,900], s:1, start:[1040,437], from:"بهو المصاعد"},
-  1:{name:"الأول", img:"assets/floors/first.jpg", vb:[400,0,920,900], s:1, start:[1040,437], from:"بهو المصاعد"},
-  2:{name:"الثاني", img:"assets/floors/second.jpg", vb:[400,0,920,900], s:1, start:[1035,440], from:"بهو المصاعد"},
-  3:{name:"الثالث", img:"assets/floors/third.jpg", vb:[400,0,920,900], s:1, start:[1045,447], from:"بهو المصاعد"},
+  G:{name:"الأرضي", img:"ground.jpg", vb:[0,0,1600,1460], s:2, start:[1490,500], from:"مدخل الموظفين"},
+  M:{name:"الميزانين", img:"mezzanine.jpg", vb:[400,0,920,900], s:1, start:[1040,437], from:"بهو المصاعد"},
+  1:{name:"الأول", img:"first.jpg", vb:[400,0,920,900], s:1, start:[1040,437], from:"بهو المصاعد"},
+  2:{name:"الثاني", img:"second.jpg", vb:[400,0,920,900], s:1, start:[1035,440], from:"بهو المصاعد"},
+  3:{name:"الثالث", img:"third.jpg", vb:[400,0,920,900], s:1, start:[1045,447], from:"بهو المصاعد"},
 };
 const LIFT = f => `اركب المصعد واطلع <strong>الدور ${FLOORS[f].name}</strong>.`;
 

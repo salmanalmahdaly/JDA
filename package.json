@@ -5,11 +5,10 @@
   "description": "وين مكتبي؟ — صفحة يدخل فيها الموظف رقمه الوظيفي ويظهر له دوره والطريق لإدارته",
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "preview": "node scripts/serve.mjs dist",
-    "dev": "node scripts/serve.mjs public"
+    "build": "node build.mjs",
+    "preview": "node serve.mjs dist"
   },
   "engines": {
-    "node": ">=18"
+    "node": "22.x"
   }
 }
