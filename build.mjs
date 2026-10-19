@@ -1,7 +1,7 @@
 // Copies the site files into dist/ and checks every file the page references exists.
 import { cpSync, rmSync, mkdirSync, readFileSync, existsSync } from "node:fs";
 
-const FILES = ["index.html", "app.js", "favicon.svg",
+const FILES = ["index.html", "qr.html", "app.js", "favicon.svg",
   "ground.jpg", "mezzanine.jpg", "first.jpg", "second.jpg", "third.jpg"];
 const OUT = "dist";
 
