@@ -1,0 +1,15 @@
+{
+  "name": "jda-office-finder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "وين مكتبي؟ — صفحة يدخل فيها الموظف رقمه الوظيفي ويظهر له دوره والطريق لإدارته",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs dist",
+    "dev": "node scripts/serve.mjs public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

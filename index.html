@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="اكتب رقمك الوظيفي ونوريك دورك والطريق لإدارتك — هيئة تطوير محافظة جدة">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>وين مكتبي؟</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+/* Base reset (matches the hosting skeleton the page was designed in) */
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<style>
+/* Layout: narrow single column — lookup bar on top, employee strip, floor plan, numbered walking directions */
+:root{
+  --bg:#F5F6FB; --surface:#FFFFFF; --fg:#16204F; --muted:#5D6587; --line:#DDE1EF;
+  --navy:#1F2E7A; --yellow:#F2B12B; --teal:#2FA79A; --purple:#5E46A3; --sky:#2EA9DE;
+  --room:#EEF0F8; --room-line:#C9CFE4; --corr:#FFFFFF; --core:#E2E5F1;
+  --route:#2FA79A; --target:#F2B12B; --target-fg:#16204F; --err:#B4232F;
+  --display:"Readex Pro","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1430; --surface:#171E42; --fg:#ECEEF8; --muted:#A5ABC8; --line:#2C3563;
+  --navy:#8FA0F0; --room:#1E2650; --room-line:#36407A; --corr:#141a3a; --core:#262F5E;
+  --route:#43C9B9; --target:#F2B12B; --target-fg:#16204F; --err:#FF7A84; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1430; --surface:#171E42; --fg:#ECEEF8; --muted:#A5ABC8; --line:#2C3563;
+  --navy:#8FA0F0; --room:#1E2650; --room-line:#36407A; --corr:#141a3a; --core:#262F5E;
+  --route:#43C9B9; --target:#F2B12B; --target-fg:#16204F; --err:#FF7A84; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+header{display:flex;align-items:center;gap:14px}
+.mark{width:44px;height:44px;flex:none}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,5vw,34px);line-height:1.2;margin:0;text-wrap:balance}
+.sub{margin:2px 0 0;color:var(--muted);font-size:15px}
+form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+label{font-weight:600;font-size:15px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+input{flex:1 1 200px;min-width:0;font:600 22px/1.2 var(--display);letter-spacing:.08em;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);direction:ltr;text-align:center;font-variant-numeric:tabular-nums}
+input:focus{outline:none;border-color:var(--teal)}
+button{font:600 17px var(--display);padding:12px 26px;border:0;border-radius:10px;background:var(--navy);color:#fff;cursor:pointer}
+:root[data-theme="dark"] button{color:#0F1430}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{color:#0F1430}}
+button:focus-visible,.chip:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.samples{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted)}
+.chip{font:500 13px var(--body);padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;direction:ltr;font-variant-numeric:tabular-nums}
+.demo{font-size:12px;font-weight:600;color:var(--purple);background:color-mix(in srgb,var(--purple) 12%,transparent);padding:2px 8px;border-radius:6px}
+.err{color:var(--err);font-weight:600;margin:0}
+.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.who div{background:var(--surface);padding:12px 16px;min-width:0}
+.who small{display:block;color:var(--muted);font-size:13px}
+.who b{font-family:var(--display);font-weight:600;font-size:18px}
+.who .big b{font-size:26px;color:var(--teal);font-variant-numeric:tabular-nums}
+h2{font-family:var(--display);font-size:20px;margin:0 0 10px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.svgbox{overflow-x:auto}
+svg{display:block;width:100%;min-width:640px;height:auto;border-radius:8px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-inline-end:5px}
+ol.steps{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+ol.steps li:last-child{border-bottom:0}
+ol.steps li::before{content:counter(s);font:700 16px var(--display);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--room);color:var(--fg)}
+ol.steps li:last-child::before{background:var(--target);color:var(--target-fg)}
+ol.steps strong{font-weight:600}
+.route{stroke-dasharray:10 8;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion:reduce){.route{animation:none}}
+footer{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg class="mark" viewBox="0 0 44 44" aria-hidden="true" style="min-width:0">
+      <path d="M22 3a19 19 0 0 0-17 11l6 3a12 12 0 0 1 11-7z" fill="var(--yellow)"/>
+      <path d="M22 3a19 19 0 0 1 18 14l-7 2a12 12 0 0 0-11-9z" fill="var(--navy)"/>
+      <path d="M40 22a19 19 0 0 1-9 16l-4-6a12 12 0 0 0 6-10z" fill="var(--teal)"/>
+      <path d="M27 40a19 19 0 0 1-12 0l2-7a12 12 0 0 0 8 0z" fill="var(--purple)"/>
+      <path d="M8 34a19 19 0 0 1-5-10l7-1a12 12 0 0 0 3 7z" fill="var(--sky)"/>
+    </svg>
+    <div>
+      <h1>وين مكتبي؟</h1>
+      <p class="sub">اكتب رقمك الوظيفي ونوريك دورك والطريق لإدارتك</p>
+    </div>
+  </header>
+
+  <form id="f" novalidate>
+    <label for="emp">الرقم الوظيفي</label>
+    <div class="row">
+      <input id="emp" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="مثال: 1">
+      <button type="submit">وريني الطريق</button>
+    </div>
+    <div class="samples">جرّب: <span id="chips" style="display:contents"></span></div>
+    <p class="err" id="err" hidden></p>
+  </form>
+
+  <section id="result" aria-live="polite">
+    <div class="who" id="who"></div>
+    <div style="height:18px"></div>
+    <div class="plan" id="planBox">
+      <h2 id="planTitle"></h2>
+      <div class="svgbox"><svg id="map" viewBox="0 0 1600 1460" role="img"></svg></div>
+      <div class="legend">
+        <span><i style="background:var(--target)"></i>إدارتك</span>
+        <span><i style="background:var(--route)"></i><span id="fromLbl">طريقك</span></span>
+      </div>
+    </div>
+    <div class="plan" id="noPlan" hidden>
+      <h2>موقع إدارتك ما انضاف للحين</h2>
+      <p style="margin:0;color:var(--muted)" id="noPlanMsg"></p>
+    </div>
+    <div style="height:18px"></div>
+    <div class="plan" id="stepsBox">
+      <h2>كيف توصل</h2>
+      <ol class="steps" id="steps"></ol>
+    </div>
+  </section>
+
+  <footer>للاستفسار عن موقع مكتبك تواصل مع إدارة المرافق.</footer>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
